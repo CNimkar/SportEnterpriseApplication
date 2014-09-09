@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Unify Official</title>
+    </h:head>
+    <h:body style="background-image: url(/resources/images/unify.png)">
+       
+       <h:graphicImage url="/resources/unifyThrobber.GIF"/>
+       <h:form>   <p:commandButton id="logoutop" value="Logout" action="#{logutManaged.logout()}"   
+                                   ajax="false" style="position: absolute;right: 0;top : 0" />
+           <p:effect type="bounce" event="click" for="logoutop"/>
+       </h:form>  
+       
+        <p:megaMenu>  
+           
+            
+        <p:submenu label="Home" >  
+             </p:submenu>
+             <p:submenu label="Fixtures" >  
+             </p:submenu>
+             <p:submenu label="Players" >  
+             </p:submenu>
+             <p:submenu label="Tickets" >  
+             </p:submenu>
+                <p:submenu label="Howdy #{login.username} !" style="font-weight: bold ;font-size: larger ;font-family: cursive"  >  
+                    </p:submenu>
+            
+        </p:megaMenu>
+        
+       
+<p:galleria value="#{imageManagedBean.images}" var="image" panelWidth="800" panelHeight="600" showCaption="true">  
+    <p:graphicImage value="/resources/images/#{image}" alt="Image Description for #{image}" title="#{image}"/>  
+</p:galleria>  
+       <h1> <h:outputText value="Events Scheduled" /></h1>
+       <h:form>  
+           <p:dataTable var="event" value="#{eventAddManaged.allMatches}">  
+        <p:column headerText="Date">  
+            <h:outputText value="#{event.date}" />  
+        </p:column>  
+  
+        <p:column headerText="Sport">  
+            <h:outputText value="#{event.sport_type}" />  
+        </p:column>  
+  
+        <p:column headerText="Team A">  
+            <h:outputText value="#{event.teamOne}" />  
+        </p:column>  
+  
+        <p:column headerText="Team B">  
+            <h:outputText value="#{event.teamTwo}" />  
+        </p:column>  
+               <p:column headerText="Venue">  
+                   <h:outputText value="#{event.venue}" />  
+        </p:column>  
+  
+        <p:column headerText="Prize">  
+            <h:outputText value="#{event.prize_money}" />  
+        </p:column>  
+          
+    </p:dataTable>  
+</h:form>  
+       
+    </h:body>
+</html>
+

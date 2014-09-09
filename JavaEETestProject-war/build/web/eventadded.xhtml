@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin Add</title>
+    </h:head>
+    <h:body>
+         <h1> <h:outputText value="Admin Panel" /></h1>
+                    <br /> <br />
+        
+            <p:tabView>
+                 
+                 
+         <p:tab id="playerinfo" title="Player Add">  
+             <p:panel header="Player Information" id="playerpanel">  
+                 <h:form>
+                 <p:growl id="playergrowl" sticky="true" showDetail="true"/> 
+                 
+               
+    
+                 <p:panelGrid columns="2" columnClasses="label, value" >
+                     
+                     <h:outputText value="Player Name:*" />  
+                     <p:inputText required="true" value="#{playerAddManaged.p.player_name}" label="PlayerName"/>
+                     
+                      <h:outputText value="Player Age:*" />  
+                      <p:inputText required="true" value="#{playerAddManaged.p.player_age}" label="PlayerAge"/>
+                     
+                      <h:outputText value="City:" />  
+                      <p:inputText   value="#{playerAddManaged.p.player_city}" label="PlayerCity"/>
+                     
+                      <h:outputText value="College Name:*" />  
+                      <p:inputText required="true" value="#{playerAddManaged.p.player_college_name}" label="PlayerCollege"/>
+                     
+                      <h:outputText value="Course :" />  
+                      <p:inputText value="#{playerAddManaged.p.player_course}" label="PlayerCourse"/>
+                     
+                    
+                   
+                 </p:panelGrid>
+                <br /><br />
+                 <p:commandButton id= "playeraddop" value="Add Player" update="playergrowl"   
+                                     action="#{playerAddManaged.addPlayer()}"/>  
+                 </h:form>
+            </p:panel>
+         </p:tab>
+        <p:tab id="teaminfo" title="Team Add">
+            <p:panel header="Team Information" id="teampanel">
+                <h:form>
+                <p:growl id="teamgrowl" sticky="true" showDetail="true"/> 
+                <p:panelGrid columns="2" columnClasses="label, value" >
+                    <h:outputText value="Team Name :" />  
+                    <p:inputText value="#{teamAddManaged.t.team_name}" label="TeamName"/>
+                    
+                    <h:outputText value="Team Size :" />  
+                    <p:selectOneListbox value="#{teamAddManaged.t.team_size}">
+                        <f:selectItems value="#{teamAddManaged.team_sizes}"/>
+                    </p:selectOneListbox>
+                    
+                    <h:outputText value="List Of Players :" />  
+                    <p:selectCheckboxMenu value="#{teamAddManaged.selectedPlayers}" label="Players">
+                        <f:selectItems value="#{teamAddManaged.player_lists}"/>
+                    </p:selectCheckboxMenu>
+   
+                    
+                </p:panelGrid>
+                <br /><br />
+                <p:commandButton id= "teamaddop" value="Add Team" update="teamgrowl"   
+                                     action="#{teamAddManaged.addTeam()}" />  
+                </h:form>
+            </p:panel>
+            
+        </p:tab>
+                
+                
+                <p:tab id="matchinfo" title="Match Add">  
+             <p:panel header="Match Information" id="matchpanel">  
+                 <h:form>
+                 <p:growl id="matchgrowl" sticky="true" showDetail="true"/> 
+                 <p:panelGrid columns="2" columnClasses="label, value" >
+                     
+                     <h:outputText value="Prize Money :" />  
+                     <p:selectOneMenu value="#{eventAddManaged.m.prize_money}" label="PrizeMoney">
+                         <f:selectItems value="#{eventAddManaged.prizeMoneyTypes}"/>
+                    </p:selectOneMenu>
+                     
+                      <h:outputText value="Venue :" />  
+                      <p:selectOneMenu value="#{eventAddManaged.m.venue}" label="Venue">
+                          <f:selectItems value="#{eventAddManaged.venueTypes}"/>
+                    </p:selectOneMenu>
+                      
+                      <h:outputText value="Team One :" />  
+                      <p:selectOneMenu value="#{eventAddManaged.team_one}" label="Team One">
+                          <f:selectItems value="#{eventAddManaged.allTeams}"/>
+                    </p:selectOneMenu>
+                      
+                      <h:outputText value="Team Two :" />  
+                      <p:selectOneMenu value="#{eventAddManaged.team_two}" label="Team Two">
+                          <f:selectItems value="#{eventAddManaged.allTeams}"/>
+                    </p:selectOneMenu>
+                      
+                      <h:outputText value="Sport Type :" />  
+                      <p:selectOneMenu value="#{eventAddManaged.m.sport_type}" label="SportType">
+                         <f:selectItems value="#{eventAddManaged.sportTypes}"/>
+                    </p:selectOneMenu>
+                    
+                 </p:panelGrid>
+                 
+                 <br /><br />
+                 
+                  <p:commandButton id= "matchaddop" value="Add Match" update="matchgrowl"   
+                                   action="#{eventAddManaged.addTeam()}" />  
+                 </h:form>
+             </p:panel>
+                </p:tab>
+                </p:tabView>
+            
+    </h:body>
+</html>
+

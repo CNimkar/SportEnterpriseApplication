@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Register</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="f">
+                                  
+                <p:panel header="Register" id="registerpanel"> 
+                    
+<!--                    <p:messages id="messages" showDetail="true" autoUpdate="true"/>-->
+                    <p:growl id="growl" showDetail="true" sticky="true" />
+                    
+        <h:panelGrid columns="2" cellpadding="5">  
+            <h:outputText value="Username : " />  
+            <p:keyboard required="true" value="#{register.username}"/>  
+
+            <h:outputText value="Email ID : " />  
+            <p:keyboard required="true" value="#{register.email}" validatorMessage="Email ID not valid !">
+             <f:validateRegex pattern="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"/>
+         </p:keyboard>  
+   
+         <h:outputLabel for="pwd1" value="Password :" />  
+         <p:password id="pwd1" value="#{register.password}" match="pwd2" label="Password 1" required="true" feedback="true" validatorMessage="something wrong with passwords !">
+             <f:validateLength maximum="35" minimum="8" />
+         </p:password>  
+            <h:outputLabel for="pwd2" value="Comfirm Password :" />  
+            <p:password id="pwd2" value="#{register.confpassword}" label="Password 2" required="true" />  
+            <br /><br /><br /><br />
+            
+            <p:commandButton id="regop" value="Submit" action="#{register.registerThisUser()}" update="growl"   
+            ajax="false" />  
+            
+            
+             <p:blockUI block="registerpanel" trigger="regop">  
+        <p:graphicImage value="/web/resources/unifyThrobber.GIF"/>  
+    </p:blockUI>
+            
+        
+        </h:panelGrid>
+            </p:panel>
+        </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
